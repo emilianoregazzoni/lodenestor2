@@ -22,5 +22,5 @@ app.use('/api', apiRouter);
 app.use(appRouter);
 
 app.listen(config.PORT, () => {
-    console.log('Aplicación levantanda')
+    console.log('Aplicación levantanda en el puerto 8080')
 });
