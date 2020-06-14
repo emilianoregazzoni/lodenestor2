@@ -45,4 +45,4 @@ class Sale {
     }
 }
 
-module.exports = Product;
+module.exports = Sale;

@@ -24,7 +24,7 @@ class Product {
         })
     }
 
-    static getAllCompanies() {
+    static getAllProducts() {
         return new Promise(function (resolve, reject) {
             db.query(GET_ALL_PRODUCTS, function (error, results) {
                 if (error) {

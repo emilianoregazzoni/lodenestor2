@@ -9,7 +9,6 @@ class User {
     var password = null;
 */
 
-
     constructor(idUser, idPofile, user, password, idCompany ) {
         this.idUser = idUser;
         this.idPofile = idPofile;
