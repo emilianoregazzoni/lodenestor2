@@ -4,6 +4,8 @@ module.exports = {
     entry: {
         'to-do-list': './app/client/to-do-list.js',
         'to-do-list-new': './app/client/to-do-list-new.js',
+        'new-company':'./app/client/new-company.js',
+        'view-companies' :'./app/client/view-companies.js',
     },
     devtool: 'eval-source-map',
     module: {

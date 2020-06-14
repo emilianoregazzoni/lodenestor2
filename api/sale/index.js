@@ -4,9 +4,9 @@ const Sale = require('../../models/sale');
 
 router.get('/:id', (req, res, next) => {
     Sale.getSaleById(req.params.id)
-        .then(task => {
+        .then(sale => {
             res.json({
-                task,
+                sale,
             });
         })
         .catch(err => {
@@ -16,9 +16,9 @@ router.get('/:id', (req, res, next) => {
 
 router.get('/', (req, res, next) => {
     Sale.getAllSales()
-        .then(products => {
+        .then(sales => {
             res.json({
-                products,
+                sales,
             });
         })
         .catch(err => {

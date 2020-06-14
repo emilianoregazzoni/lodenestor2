@@ -4,9 +4,9 @@ const Product = require('../../models/product');
 
 router.get('/:id', (req, res, next) => {
     Product.getProductById(req.params.id)
-        .then(task => {
+        .then(product => {
             res.json({
-                task,
+                product,
             });
         })
         .catch(err => {

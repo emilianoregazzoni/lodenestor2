@@ -8,10 +8,10 @@ const userRouter = require ('./user');
 const { apiErrorHandler } = require('../middlewares/error-handler');
 
 router.use('/tasks', taskRouter);
-router.use('/companies', companyRouter);
-router.use('/product', companyRouter);
-router.use('/sale', companyRouter);
-router.use('/user', companyRouter);
+router.use('/new-company', companyRouter);
+router.use('/product', productRouter);
+router.use('/sale', saleRouter);
+router.use('/user', userRouter);
 
 
 router.use(apiErrorHandler);

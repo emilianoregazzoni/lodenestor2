@@ -4,9 +4,9 @@ const User = require('../../models/user');
 
 router.get('/:id', (req, res, next) => {
     User.getUserById(req.params.id)
-        .then(task => {
+        .then(user => {
             res.json({
-                task,
+                user,
             });
         })
         .catch(err => {
@@ -16,9 +16,9 @@ router.get('/:id', (req, res, next) => {
 
 router.get('/', (req, res, next) => {
     User.getAllUsers()
-        .then(products => {
+        .then(users => {
             res.json({
-                products,
+                users,
             });
         })
         .catch(err => {

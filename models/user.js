@@ -68,7 +68,7 @@ class User {
                             connection.query('INSERT INTO users SET ?', newUser, (error, results, fields) => {
                                 if (error) {
                                     console.log('Se produjo un error');
-                                    rejected(error);
+                                    reject(error);
                                 } else {
                                     resolve(new User(newUser.user, null));
                                 }
@@ -89,20 +89,20 @@ class User {
 
             const { username, password } = parms;
 
-            connection.query("SELECT password FROM users WHERE username = ?", [username], (err, result) => {
-                if (err) {
-                    reject(err);
-                } else {
+            connection.query("SELECT password FROM user WHERE user = ?", [username], (err, result) => {
+                if (err) reject(err);
+                
+                else {
                     if (result.length > 0) {
                         bcrypt.compare(password, result[0].password, function (err, compareResult) {
                             if (compareResult) {
                                 resolve(new User(username, null))
                             } else {
-                                rejected('Usuario y/o contraseña incorrecta');
+                                reject('Usuario y/o contraseña incorrecta');
                             }
                         });
                     } else {
-                        rejected('Usuario y/o contraseña incorrecta');
+                        reject('Usuario y/o contraseña incorrecta');
                     }
                 }
             });

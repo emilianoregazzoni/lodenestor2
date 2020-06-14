@@ -4,9 +4,9 @@ const Company = require('../../models/company');
 
 router.get('/:id', (req, res, next) => {
     Company.getCompanyById(req.params.id)
-        .then(task => {
+        .then(company => {
             res.json({
-                task,
+                company,
             });
         })
         .catch(err => {
