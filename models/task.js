@@ -1,8 +1,10 @@
 const db = require('../services/db-connection');
 const GET_TASK_BY_ID = 'SELECT * from tasks where id = ?';
 const GET_ALL_TASKS = 'SELECT * from tasks';
+const INSERT_NEW_TASK = 'INSERT INTO tasks SET ?';
 
 class Task {
+   
     constructor(id, name, description) {
         this.id = id;
         this.name = name;
@@ -39,6 +41,23 @@ class Task {
                 }
               });
         })
+    }
+
+    save() {
+        const newTask = {
+            name: this.name,
+            description: this.description,
+        };
+        return new Promise((resolve, rejected) => {
+            db.query(INSERT_NEW_TASK, newTask, (error, results, fields) => {
+                if (error) {
+                    console.log('Se produjo un error');
+                    rejected(error);
+                } else {
+                    resolve(new Task(newTask.name, newTask.description));
+                }
+            });
+        });
     }
 }
 

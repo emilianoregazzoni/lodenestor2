@@ -6,6 +6,7 @@ module.exports = {
         'to-do-list-new': './app/client/to-do-list-new.js',
         'new-company':'./app/client/new-company.js',
         'view-companies' :'./app/client/view-companies.js',
+        'lodenestor':'./app/client/lodenestor.js',
     },
     devtool: 'eval-source-map',
     module: {

@@ -4,9 +4,10 @@ const GET_ALL_COMPANIES = 'SELECT * from company';
 
 
 class Company {
-    constructor(idCompany, RUT, mail, direction, name) {
+
+    constructor(idCompany, rut, mail, direction, name) {
         this.idCompany = idCompany;
-        this.RUT = RUT;
+        this.rut = rut;
         this.mail = mail;
         this.direction = direction;
         this.name = name;
@@ -25,7 +26,6 @@ class Company {
         })
     }
 
-
     static findCompanyByName(name) {
         return new Promise((resolve, reject) => { 
             db.query(GET_COMPANY_BY_ID, name, (error, result) => {
@@ -38,33 +38,14 @@ class Company {
         });
     }
 
-    static getAllCompanies() {
-        return new Promise(function (resolve, reject) {
-            db.query(GET_ALL_COMPANIES, function (error, results) {
-                if (error) {
-                    reject(error);
-                } else {
-                    try {
-                        resolve(results.map((company) => {
-                            const { RUT, mail, direction, name} = company;
-                            return new Company(id, name, description);
-                        }));
-                    } catch(err) {
-                        reject(err);
-                    }
-                }
-              });
-        })
-    }
-
-
-static newCompany(parms) {
+ newCompany(parms) {
     return new Promise((resolve, reject) => {
         const {rut, mail, direction, name} = parms;
         this.findCompanyByName(name)
             .then((find) => {
                 if (!find) {       
                         const newCompany = {
+                            idCompany,
                             rut,
                             mail,
                             direction,
@@ -90,6 +71,24 @@ static newCompany(parms) {
 
     }
 
+    static getAllCompanies() {
+        return new Promise(function (resolve, reject) {
+            db.query(GET_ALL_COMPANIES, function (error, results) {
+                if (error) {
+                    reject(error);
+                } else {
+                    try {
+                        resolve(results.map((company) => {
+                            const {idCompany, rut, mail, direction, name} = company;
+                            return new Company(idCompany, rut, mail, direction, name);
+                        }));
+                    } catch(err) {
+                        reject(err);
+                    }
+                }
+              });
+        })
+    }
 } // cierre clase
 
 module.exports = Company;

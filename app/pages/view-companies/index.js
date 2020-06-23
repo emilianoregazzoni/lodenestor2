@@ -1,28 +1,28 @@
 const router = require('express').Router();
 const React = require('react');
+const {StaticRouter} = require('react-router-dom');
 const { renderToString } = require('react-dom/server');
 const Company = require('../../../models/company');
 const View = require('./view');
 
-router.get('/', (req, res, next) => {
-    Company.getAllCompanies
-      .then(company => {
-        const initialState = {
-          company,
-        };
-        
-        const content = renderToString(<View initialState={initialState}/>);
 
-        res.render('template', {
-          pageName: 'view-companies',
-          pageTitle: 'View companies',
-          initialState,
-          content
-        });
-      })
-      .catch(err => {
-        next(err);
-      });
+router.get('/*', (req, res, next) => {
+  const initialState = {};
+  const context = {};
+
+  const content = renderToString(
+      <StaticRouter location={req.url} context={context}>
+          <View initialState={initialState}/>
+      </StaticRouter>
+  );
+
+  res.render('template', {
+    pageName: 'view-companies',
+    pageTitle: 'Companies',
+    host: 'http://localhost:8080',
+    initialState,
+    content
+});
 });
 
 module.exports = router;
