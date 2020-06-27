@@ -16,8 +16,8 @@ router.get('/*', (req, res, next) => {
   );
 
   res.render('template', {
-    pageName: 'view-companies',
-    pageTitle: 'Companies',
+    pageName: 'view-products',
+    pageTitle: 'Products',
     host: 'http://localhost:8080',
     initialState,
     content

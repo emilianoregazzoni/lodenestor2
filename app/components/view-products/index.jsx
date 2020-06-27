@@ -1,23 +1,23 @@
 const React = require('react');
-const Company = require('../company');
 const {Link} = require ('react-router-dom');
+const Product = require('../product');
 
-class ViewCompany extends React.Component {
+class ViewProduct extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        companies: null,
+        products: null,
         loading: true,
         error: false,
     };
 }
 
   componentDidMount() {
-    fetch(`/api/company/`)
+    fetch(`/api/product/`)
         .then(res => res.json()).then((data) =>{
-            console.log(data.companies);
+            console.log(data.products);
         this.setState({
-            companies: data.companies,
+            products: data.products,
             loading: false,
             error: false,
         });
@@ -25,7 +25,7 @@ class ViewCompany extends React.Component {
         .catch((err) => {
             console.error(err);
             this.setState({
-                companies: null,
+                products: null,
                 loading: false,
                 error: true,
             });
@@ -34,18 +34,18 @@ class ViewCompany extends React.Component {
 
 render() {
 
-    const companies  = this.state.companies;
+    const products  = this.state.products;
     if (this.state.loading) {
-        return (<div>Cargando compañías...</div>);
+        return (<div>Cargando Productos...</div>);
     }
     return (
         <div>
-            <h1>Companías cargadas</h1>
-           
-            <ul className="view-companies">
+            <h1>Productos cargados</h1>
+          
+            <ul className="view-products">
                 {
-                    companies.map(company => (
-                        <Company key={company.id} id={company.id} mail={company.mail} rut={company.rut} direction={company.direction} name={company.name} />
+                    products.map(product => (
+                        <Product key={product.id} id={product.id} name={product.name} description={product.description} />
                     ))
                 }
             </ul>
@@ -54,4 +54,4 @@ render() {
 }
 };
 
-module.exports = ViewCompany;
+module.exports = ViewProduct;

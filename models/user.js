@@ -23,8 +23,8 @@ class User {
                 if (error) {
                     reject(error);
                 } else {
-                    const {idUser, idPofile, user, password, idCompany} = results[0];
-                    resolve(new User(idUser, idPofile, user, password, idCompany));
+                    const {idUser, idPofile, user, idCompany} = results[0];
+                    resolve(new User(idUser, idPofile, user, idCompany));
                 }
               });
         })
@@ -38,8 +38,8 @@ class User {
                 } else {
                     try {
                         resolve(results.map((usuario) => {
-                            const { idUser, idPofile, user, password, idCompany} = usuario;
-                            return new Product(idUser, idPofile, user, password, idCompany);
+                            const { idUser, idPofile, user, idCompany} = usuario;
+                            return new User(idUser, idPofile, user, idCompany);
                         }));
                     } catch(err) {
                         reject(err);

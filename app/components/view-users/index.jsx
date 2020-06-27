@@ -1,23 +1,23 @@
 const React = require('react');
-const Task = require('../task');
+const User = require('../user');
 const {Link} = require ('react-router-dom');
 
-class ToDoList extends React.Component {
+class ViewUsers extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tasks: null,
+            users: null,
             loading: true,
             error: false,
         };
     }
 
     componentDidMount() {
-        fetch(`/api/tasks/`)
+        fetch(`/api/user/`)
             .then(res => res.json()).then((data) =>{
-                console.log(data.tasks);
+                console.log(data.users);
             this.setState({
-                tasks: data.tasks,
+                users: data.users,
                 loading: false,
                 error: false,
             });
@@ -25,7 +25,7 @@ class ToDoList extends React.Component {
             .catch((err) => {
                 console.error(err);
                 this.setState({
-                    tasks: null,
+                    users: null,
                     loading: false,
                     error: true,
                 });
@@ -33,18 +33,17 @@ class ToDoList extends React.Component {
     }
 
     render() {
-        const tasks  = this.state.tasks;
+        const users  = this.state.users;
         if (this.state.loading) {
-            return (<div>Cargando tareas ...</div>)
+            return (<div>Cargando Usuarios</div>)
         }
         return (
             <div>
-                <h1>Listado de tares</h1>
-                <Link to={`/to-do-list/new`}>Crear nueva tarea</Link>
-                <ul className="to-do-list">
+                <h1>Listado de usuarios</h1>
+                <ul className="view-users">
                     {
-                        tasks.map(task => (
-                            <Task key={task.id} id={task.id} name={task.name} description={task.description} />
+                        users.map(user => (
+                            <User key={user.id} idUser={user.idUser} user={user.user} idCompany={user.idCompany} />
                         ))
                     }
                 </ul>
@@ -53,4 +52,4 @@ class ToDoList extends React.Component {
     }
 };
 
-module.exports = ToDoList;
+module.exports = ViewUsers;

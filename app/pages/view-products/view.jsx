@@ -1,0 +1,21 @@
+const React = require('react');
+const { Route } = require('react-router-dom');
+const ViewProduct = require('../../components/view-products');
+
+class ViewProductsPage extends React.Component {
+  
+        render() {
+            const { products } = this.props.initialState;
+            return (
+                <React.Fragment>
+                    <Route
+                        exact
+                        path="/view-products"
+                        render={(props) => <ViewProduct {...props} products={products}/>}
+                    />
+                </React.Fragment>
+            );
+        }
+    };
+    
+    module.exports = ViewProductsPage;

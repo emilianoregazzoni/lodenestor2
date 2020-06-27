@@ -1,23 +1,23 @@
 const React = require('react');
-const Company = require('../company');
 const {Link} = require ('react-router-dom');
+const Sale = require('../sale');
 
-class ViewCompany extends React.Component {
+class ViewSale extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        companies: null,
+        sales: null,
         loading: true,
         error: false,
     };
 }
 
   componentDidMount() {
-    fetch(`/api/company/`)
+    fetch(`/api/sale/`)
         .then(res => res.json()).then((data) =>{
-            console.log(data.companies);
+            console.log(data.sales);
         this.setState({
-            companies: data.companies,
+            sales: data.sales,
             loading: false,
             error: false,
         });
@@ -25,7 +25,7 @@ class ViewCompany extends React.Component {
         .catch((err) => {
             console.error(err);
             this.setState({
-                companies: null,
+                sales: null,
                 loading: false,
                 error: true,
             });
@@ -34,18 +34,19 @@ class ViewCompany extends React.Component {
 
 render() {
 
-    const companies  = this.state.companies;
+    const sales  = this.state.sales;
     if (this.state.loading) {
-        return (<div>Cargando compañías...</div>);
+        return (<div>Cargando ventas...</div>);
     }
     return (
         <div>
-            <h1>Companías cargadas</h1>
-           
-            <ul className="view-companies">
+            <h1>Ventas cargadas</h1>
+          
+            <ul className="view-sales">
                 {
-                    companies.map(company => (
-                        <Company key={company.id} id={company.id} mail={company.mail} rut={company.rut} direction={company.direction} name={company.name} />
+                    sales.map(sale => (
+                        <Sale key={sale.idSale} idSale={sale.idSale} date={sale.date} idCompany={sale.idCompany}
+                        amout={sale.amout} charge={sale.charge}/>
                     ))
                 }
             </ul>
@@ -54,4 +55,4 @@ render() {
 }
 };
 
-module.exports = ViewCompany;
+module.exports = ViewSale;

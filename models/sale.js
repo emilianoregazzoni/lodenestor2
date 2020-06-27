@@ -3,7 +3,7 @@ const GET_SALE_BY_ID = 'SELECT * from sale where idSale = ?';
 const GET_ALL_SALES = 'SELECT * from sale';
 
 
-class Sale {
+class Sale{
     constructor(idSale, date, idCompany, amount, charge ) {
         this.idSale = idSale;
         this.date = date;
@@ -34,7 +34,7 @@ class Sale {
                     try {
                         resolve(results.map((sale) => {
                             const  {idSale, date, idCompany, amount, charge} = sale;
-                            return new Product(idSale, date, idCompany, amount, charge);
+                            return new Sale(idSale, date, idCompany, amount, charge);
                         }));
                     } catch(err) {
                         reject(err);

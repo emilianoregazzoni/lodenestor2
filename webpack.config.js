@@ -7,6 +7,9 @@ module.exports = {
         'new-company':'./app/client/new-company.js',
         'view-companies' :'./app/client/view-companies.js',
         'lodenestor':'./app/client/lodenestor.js',
+        'view-products':'./app/client/view-products.js',  
+        'view-users' : './app/client/view-users.js',
+        'view-sales' : './app/client/view-sales.js'
     },
     devtool: 'eval-source-map',
     module: {

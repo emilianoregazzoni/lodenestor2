@@ -1,6 +1,6 @@
 const React = require('react');
 const { Route } = require('react-router-dom');
-const {ViewCompany} = require('../../components/view-companies');
+const ViewCompany = require('../../components/view-companies');
 
 class ViewCompaniesPage extends React.Component {
   

@@ -13,8 +13,6 @@ router.use('/new-company', companyRouter);
 router.use('/product', productRouter);
 router.use('/sale', saleRouter);
 router.use('/user', userRouter);
-//router.use('/view-companies', viewCompaniesRouter);
-
 router.use('/company', viewCompaniesRouter);
 
 
