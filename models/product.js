@@ -1,6 +1,7 @@
 const db = require('../services/db-connection');
 const GET_PRODUCT_BY_ID = 'SELECT * from product where idProduct = ?';
 const GET_ALL_PRODUCTS = 'SELECT * from product';
+const INSERT_NEW_PRODUCT = 'INSERT INTO product SET ?';
 
 
 class Product {
@@ -42,6 +43,25 @@ class Product {
               });
         })
     }
+
+    save() {
+        const newProduct = {
+            description: this.description,
+            image: this.image,
+            name: this.name
+        };
+        return new Promise((resolve, reject) => {
+            db.query(INSERT_NEW_PRODUCT, newProduct, (error, results, fields) => {
+                if (error) {
+                    console.log('Se produjo un error');
+                    reject(error);
+                } else {
+                    resolve(new Product(newProduct.description,newProduct.image, newProduct.name));
+                }
+            });
+        });
+    }
+
 }
 
 module.exports = Product;

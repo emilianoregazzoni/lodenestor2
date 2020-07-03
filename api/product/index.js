@@ -26,4 +26,17 @@ router.get('/', (req, res, next) => {
         });
 });
 
+router.post('/', (req, res, next) => {
+    console.log(req.body);
+    const product = new Product(null, req.body.description, req.body.image, req.body.name);
+
+    product.save().then(product => {
+        res.json({
+            product,
+        });
+    }).catch(err => {
+        next(err);
+    });
+});
+
 module.exports = router;

@@ -1,4 +1,4 @@
-const React = require('react');
+/*const React = require('react');
 const LoDeNestor = require('../../components/lodenestor');
 
 
@@ -9,3 +9,4 @@ class LoDeNestorPage extends React.Component {
 };
 
 module.exports = LoDeNestorPage;
+*/

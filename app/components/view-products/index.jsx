@@ -41,7 +41,7 @@ render() {
     return (
         <div>
             <h1>Productos cargados</h1>
-          
+            <Link to={`/view-products/new`}>Crear nuevo producto</Link>
             <ul className="view-products">
                 {
                     products.map(product => (

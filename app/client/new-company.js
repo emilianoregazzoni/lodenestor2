@@ -2,6 +2,7 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const ViewCompaniesPage = require('../pages/new-company/view');
 const styles = require('../pages/new-company/style.scss');
+const { BrowserRouter } = require('react-router-dom');
 
 const initialState = JSON.parse(window.__STATE__);
 
